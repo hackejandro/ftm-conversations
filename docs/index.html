@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="nl">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Conversations around Follow the Money stories on ATProto.">
-  <title>Conversations around Follow the Money</title>
+  <meta name="description" content="Gesprekken rond artikelen van Follow the Money op ATProto.">
+  <title>Gesprekken rond Follow the Money</title>
   <style>
     :root{--page:#f5f2e8;--text:#121212;--muted:#62625d;--line:#171717;--soft-line:#c9c6bb;--accent:#246243;--serif:"Iowan Old Style",Baskerville,"Times New Roman",serif;--sans:"Helvetica Neue",Helvetica,Arial,sans-serif}
     *{box-sizing:border-box}html,body{background:var(--page)}body{margin:0;color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased}button,a{font:inherit}button{color:inherit}h1,h2,p{margin-top:0}.site-shell{min-height:100vh}
@@ -20,24 +20,24 @@
 </head>
 <body>
   <main class="site-shell">
-    <p class="site-note">An independent experiment using public ATProto data. Not affiliated with Follow the Money.</p>
+    <p class="site-note">Een onafhankelijk experiment met openbare ATProto-data. Niet verbonden aan Follow the Money.</p>
     <section class="feed" id="feed" aria-labelledby="feed-title">
       <div class="feed-intro">
-        <h1 id="feed-title">Conversations around ftm.nl and ftm.eu stories</h1>
-        <p>Articles shared independently by more than one account, with at least one reply. Any language, from the past 24 hours.</p>
-        <div class="live-status" id="live-status" data-state="loading" role="status" aria-live="polite"><span class="live-dot" aria-hidden="true"></span><span id="live-text">Loading shared feed…</span></div>
+        <h1 id="feed-title">Gesprekken rond artikelen van ftm.nl en ftm.eu</h1>
+        <p>Artikelen die onafhankelijk door meer dan één account zijn gedeeld, met minstens één reactie. In alle talen, uit de afgelopen 24 uur.</p>
+        <div class="live-status" id="live-status" data-state="loading" role="status" aria-live="polite"><span class="live-dot" aria-hidden="true"></span><span id="live-text">Gesprekken laden…</span></div>
       </div>
       <div class="link-list" id="link-list"></div>
     </section>
     <section class="detail hidden" id="detail" aria-labelledby="detail-title">
-      <button class="back-button" id="back">← Back to stories</button>
+      <button class="back-button" id="back">← Terug naar artikelen</button>
       <article class="article-card">
         <div><div class="domain" id="detail-domain"></div><h1 id="detail-title"></h1><p id="detail-description"></p></div>
-        <a class="article-button" id="article-button" target="_blank" rel="noopener noreferrer">Open story ↗</a>
+        <a class="article-button" id="article-button" target="_blank" rel="noopener noreferrer">Open artikel ↗</a>
         <div class="article-meta"><span id="detail-conversations"></span><span id="detail-messages"></span><span id="detail-people"></span></div>
       </article>
-      <p class="language-note">The feed includes all languages declared in the original public ATProto posts. It is rebuilt from ATProto Jetstream every fifteen minutes.</p>
-      <div class="conversation-list"><h2>Posts about this story</h2><div id="conversations"></div></div>
+      <p class="language-note">Het overzicht bevat alle talen die in de oorspronkelijke openbare ATProto-berichten zijn opgegeven. Het wordt iedere vijftien minuten opnieuw opgebouwd vanuit ATProto Jetstream.</p>
+      <div class="conversation-list"><h2>Berichten over dit artikel</h2><div id="conversations"></div></div>
     </section>
   </main>
   <script src="./app.js?v=20260908"></script>
