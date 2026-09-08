@@ -1,0 +1,13 @@
+{
+  "$schema": "../../commonplace-prototype/node_modules/wrangler/config-schema.json",
+  "name": "ftm-conversations-scheduler",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-08",
+  "triggers": {
+    "crons": ["*/15 * * * *"]
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  }
+}

@@ -12,7 +12,7 @@ Posts in every language are included. No automated language detection, topic cla
 
 ## How it works
 
-GitHub Actions catches up with Jetstream every fifteen minutes, stores its rolling 24-hour collection state as an Actions artifact, builds `docs/feed.json`, and deploys the static site to GitHub Pages. Visitors all see the same snapshot and do not trigger data collection.
+A dedicated Cloudflare Cron Trigger dispatches the GitHub workflow every fifteen minutes. GitHub Actions then catches up with Jetstream, stores its rolling 24-hour collection state as an Actions artifact, builds `docs/feed.json`, and deploys the static site to GitHub Pages. Visitors all see the same snapshot and do not trigger data collection.
 
 ## Run locally
 
