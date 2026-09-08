@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Conversations around Follow the Money stories on ATProto.">
+  <title>Conversations around Follow the Money</title>
+  <style>
+    :root{--page:#f5f2e8;--text:#121212;--muted:#62625d;--line:#171717;--soft-line:#c9c6bb;--accent:#246243;--serif:"Iowan Old Style",Baskerville,"Times New Roman",serif;--sans:"Helvetica Neue",Helvetica,Arial,sans-serif}
+    *{box-sizing:border-box}html,body{background:var(--page)}body{margin:0;color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased}button,a{font:inherit}button{color:inherit}h1,h2,p{margin-top:0}.site-shell{min-height:100vh}
+    .site-note,.feed,.detail{width:min(calc(100% - 64px),1180px);margin-inline:auto}.site-note{padding:26px 0 20px;border-bottom:1px solid var(--line);color:var(--muted);font-size:11px;line-height:1.5}.site-note a{color:var(--accent);font-weight:700;text-underline-offset:3px}.feed,.detail{padding:42px 0 80px}
+    .feed-intro{display:grid;grid-template-columns:minmax(0,2fr) minmax(260px,1fr);gap:32px 64px;align-items:end;margin-bottom:54px}.feed h1,.article-card h1{margin:0;font-family:var(--serif);font-size:clamp(46px,6vw,82px);font-weight:400;line-height:.98;letter-spacing:-.045em}.feed-intro>p{margin:0;font-family:var(--serif);font-size:clamp(17px,1.65vw,22px);line-height:1.28}
+    .live-status{display:flex;align-items:center;gap:8px;grid-column:2;margin-top:-12px;color:var(--muted);font-size:11px;font-weight:600}.live-dot{width:6px;height:6px;border-radius:50%;background:#999}.live-status[data-state="live"] .live-dot{background:var(--text)}.live-status[data-state="error"]{color:#6d1d1d}.live-status[data-state="error"] .live-dot{background:#6d1d1d}
+    .link-list{border-top:1px solid var(--line)}.empty-state{margin:0;padding:34px 0;border-bottom:1px solid var(--line);color:var(--muted);font-family:var(--serif);font-size:20px}.link-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;width:100%;padding:25px 3px 27px;text-align:left;border:0;border-bottom:1px solid var(--line);background:transparent;cursor:pointer}.link-copy{display:grid;min-width:0}.domain{margin-bottom:9px;color:var(--accent);font-size:11px;font-weight:700;letter-spacing:.075em;text-transform:uppercase}.link-title{max-width:980px;font-family:var(--serif);font-size:clamp(28px,3.4vw,47px);font-weight:400;line-height:1.04;letter-spacing:-.03em}.description{max-width:760px;margin-top:10px;color:var(--muted);font-family:var(--serif);font-size:16px;line-height:1.38}.card-meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:17px;font-size:11px;font-weight:700;letter-spacing:.035em;text-transform:uppercase}.open-label{align-self:center;font-size:44px;font-weight:300;transition:transform 160ms ease}.link-card:hover .open-label{transform:translateX(7px)}.link-card:hover .link-title{color:var(--accent)}.link-card:focus-visible{outline:2px solid var(--accent);outline-offset:5px}
+    .back-button{margin:0 0 34px;padding:0 0 5px;color:var(--accent);font-size:12px;font-weight:700;border:0;border-bottom:1px solid currentColor;background:transparent;cursor:pointer}.article-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:30px;padding:0 0 38px;border-bottom:1px solid var(--line)}.article-card h1{max-width:950px;font-size:clamp(42px,6vw,78px)}.article-card p{max-width:760px;margin:18px 0 0;color:var(--muted);font-family:var(--serif);font-size:18px;line-height:1.42}.article-button{align-self:start;padding:10px 0 5px;color:var(--accent);font-size:12px;font-weight:700;text-decoration:none;border-bottom:1px solid currentColor}.article-meta{display:flex;flex-wrap:wrap;grid-column:1/-1;gap:8px 22px;margin-top:4px;padding-top:20px;border-top:1px solid var(--soft-line);font-size:11px;font-weight:700;letter-spacing:.035em;text-transform:uppercase}.language-note{max-width:760px;margin:14px 0 52px;color:var(--muted);font-size:11px;line-height:1.5}
+    .conversation-list h2{margin:0;padding-bottom:16px;border-bottom:1px solid var(--line);font-family:var(--serif);font-size:clamp(30px,4vw,48px);font-weight:400;letter-spacing:-.03em}.conversation{position:relative;padding:24px 2px;border-bottom:1px solid var(--soft-line)}.conversation.reply{margin-left:44px;padding-left:20px;border-left:1px solid var(--line)}.conversation.reply:before{content:"";position:absolute;top:38px;left:-1px;width:12px;border-top:1px solid var(--line)}.conversation-author{display:flex;align-items:center;gap:10px}.conversation-author div{display:grid;gap:2px}.conversation-author strong{font-size:13px}.conversation-author div span{color:var(--muted);font-size:11px}.avatar{display:grid;place-items:center;width:31px;height:31px;border:1px solid var(--line);border-radius:50%;font-size:9px;font-weight:700}.conversation>p{max-width:780px;margin:13px 0 12px 41px;font-family:var(--serif);font-size:18px;line-height:1.45;white-space:pre-wrap}.conversation-meta{margin-left:41px;font-size:11px;font-weight:700}.conversation-meta a{color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor}.hidden{display:none}
+    @media(max-width:760px){.site-note,.feed,.detail{width:min(calc(100% - 28px),1180px)}.site-note{padding-top:18px}.feed,.detail{padding-top:30px}.feed-intro{grid-template-columns:1fr;gap:22px;margin-bottom:38px}.feed h1{font-size:clamp(42px,13vw,62px)}.live-status{grid-column:1;margin-top:-10px}.link-card{gap:14px;padding:21px 1px 23px}.link-title{font-size:clamp(27px,8.6vw,38px)}.open-label{font-size:32px}.article-card{grid-template-columns:1fr;gap:20px}.article-button{justify-self:start}.article-meta{grid-column:1}.conversation.reply{margin-left:20px;padding-left:13px}}
+    @media(prefers-reduced-motion:reduce){.open-label{transition:none}}
+  </style>
+</head>
+<body>
+  <main class="site-shell">
+    <p class="site-note">An independent experiment using public ATProto data. Not affiliated with Follow the Money.</p>
+    <section class="feed" id="feed" aria-labelledby="feed-title">
+      <div class="feed-intro">
+        <h1 id="feed-title">Conversations around ftm.nl and ftm.eu stories</h1>
+        <p>Articles shared independently by more than one account, with at least one reply. Any language, from the past 24 hours.</p>
+        <div class="live-status" id="live-status" data-state="loading" role="status" aria-live="polite"><span class="live-dot" aria-hidden="true"></span><span id="live-text">Loading shared feed…</span></div>
+      </div>
+      <div class="link-list" id="link-list"></div>
+    </section>
+    <section class="detail hidden" id="detail" aria-labelledby="detail-title">
+      <button class="back-button" id="back">← Back to stories</button>
+      <article class="article-card">
+        <div><div class="domain" id="detail-domain"></div><h1 id="detail-title"></h1><p id="detail-description"></p></div>
+        <a class="article-button" id="article-button" target="_blank" rel="noopener noreferrer">Open story ↗</a>
+        <div class="article-meta"><span id="detail-conversations"></span><span id="detail-messages"></span><span id="detail-people"></span></div>
+      </article>
+      <p class="language-note">The feed includes all languages declared in the original public ATProto posts. It is rebuilt from ATProto Jetstream every fifteen minutes.</p>
+      <div class="conversation-list"><h2>Posts about this story</h2><div id="conversations"></div></div>
+    </section>
+  </main>
+  <script src="./app.js?v=20260908"></script>
+</body>
+</html>
