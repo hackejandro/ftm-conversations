@@ -8,7 +8,9 @@ on:
       - 'scripts/**'
       - '.github/workflows/update-feed.yml'
   schedule:
-    - cron: '*/15 * * * *'
+    # Avoid GitHub Actions' busiest quarter-hour boundaries, where scheduled
+    # workflows are more likely to be delayed or dropped.
+    - cron: '8,23,38,53 * * * *'
   workflow_dispatch:
 
 permissions:
