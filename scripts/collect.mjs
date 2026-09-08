@@ -6,6 +6,8 @@ const API = 'https://public.api.bsky.app/xrpc';
 const DAY = 24 * 60 * 60 * 1000;
 const INTERVAL = 15 * 60 * 1000;
 const MAX_ITEMS = 20;
+const MAX_REPLY_ROOT_LOOKUPS = 120;
+const FETCH_TIMEOUT = 8_000;
 const STATE_PATH = 'work/collector-state.json';
 const FEED_PATH = 'docs/feed.json';
 
@@ -68,9 +70,9 @@ function candidateFrom(event) {
 
 async function json(url) {
   let lastStatus = 0;
-  for (let attempt = 0; attempt < 6; attempt += 1) {
+  for (let attempt = 0; attempt < 3; attempt += 1) {
     try {
-      const response = await fetch(url);
+      const response = await fetch(url, { signal: AbortSignal.timeout(FETCH_TIMEOUT) });
       if (response.ok) return response.json();
       lastStatus = response.status;
       await response.body?.cancel();
@@ -78,11 +80,11 @@ async function json(url) {
       const retryAfter = Number(response.headers.get('retry-after')) * 1000;
       const delay = Number.isFinite(retryAfter) && retryAfter > 0
         ? retryAfter
-        : 500 * (2 ** attempt) + Math.floor(Math.random() * 500);
-      await new Promise((resolve) => setTimeout(resolve, Math.min(delay, 12_000)));
+        : 400 * (2 ** attempt) + Math.floor(Math.random() * 300);
+      await new Promise((resolve) => setTimeout(resolve, Math.min(delay, 3_000)));
     } catch (error) {
       lastStatus = error?.cause?.code || error?.name || 'network';
-      await new Promise((resolve) => setTimeout(resolve, Math.min(500 * (2 ** attempt), 12_000)));
+      await new Promise((resolve) => setTimeout(resolve, Math.min(400 * (2 ** attempt), 3_000)));
     }
   }
   throw new Error(`${lastStatus} ${url}`);
@@ -192,7 +194,7 @@ async function collect(state) {
         const candidate = candidateFrom(event);
         if (candidate) candidates.set(candidate.uri, candidate);
         const root = event.commit?.record?.reply?.root?.uri;
-        if (!candidate && root) replyRoots.add(root);
+        if (!candidate && root && replyRoots.size < MAX_REPLY_ROOT_LOOKUPS) replyRoots.add(root);
         if (cursor >= targetCursor) finish();
       } catch { /* Een ongeldig frame wordt genegeerd. */ }
     });
